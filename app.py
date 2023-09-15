@@ -1,12 +1,4 @@
 import streamlit as st
-<<<<<<< Updated upstream
-st.title("Internet Search + Math AI Assistant")
-prompt = st.text_input("Enter any question here:")
-
-# if prompt:
-#  response = llm(prompt)
-#  st.write(response)
-=======
 from PyPDF2 import PdfReader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings.openai import OpenAIEmbeddings
@@ -57,4 +49,3 @@ if prompt:
     st.write(response)
 
 
->>>>>>> Stashed changes
