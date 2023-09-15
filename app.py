@@ -6,9 +6,9 @@ from langchain.vectorstores import FAISS
 from langchain.chains.question_answering import load_qa_chain
 from langchain.llms import OpenAI # Brings in the OpenAI API
 
-llm = OpenAI(openai_api_key='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')# initializes the llm(the ai), so it's ready for use
-OPENAI_API_KEY = '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'
-st.title("Internet Search + Math AI Assistant")
+llm = OpenAI(temperature = 0, openai_api_key='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')# initializes the llm(the ai), so it's ready for use
+openai_key = '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'
+st.title("StudyAngel PDF Search")
 
 # PDF reader
 pdf = st.file_uploader("Enter file here!", type = "pdf")
@@ -26,7 +26,7 @@ if pdf is not None:
     )
     chunks = text_splitter.split_text(text)
     # Create the Embeddings
-    embeddings = OpenAIEmbeddings()
+    embeddings = OpenAIEmbeddings(openai_api_key = openai_key)
     knowledge_base = FAISS.from_texts(chunks, embeddings)
 
 # PDF questions
