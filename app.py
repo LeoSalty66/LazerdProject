@@ -5,10 +5,18 @@ from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.vectorstores import FAISS
 from langchain.chains.question_answering import load_qa_chain
 from langchain.llms import OpenAI # Brings in the OpenAI API
+from PIL import Image
 
-llm = OpenAI(temperature = 0, openai_api_key='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')# initializes the llm(the ai), so it's ready for use
+
+image = Image.open("StudyAngelLogo2.png")
+llm = OpenAI(openai_api_key='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')# initializes the llm(the ai), so it's ready for use
 openai_key = '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'
-st.title("StudyAngel PDF Search")
+
+col1, col2 = st.columns(2)
+with col1:
+   st.title("\nStudyAngel Assistant")
+with col2:
+   st.image(image)
 
 # PDF reader
 pdf = st.file_uploader("Enter file here!", type = "pdf")
