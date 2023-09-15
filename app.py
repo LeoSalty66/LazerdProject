@@ -14,7 +14,7 @@ openai_key = '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'
 
 col1, col2 = st.columns(2)
 with col1:
-   st.title("\nStudyAngel Assistant")
+   st.title("\nStudyAngel Learning Assistant")
 with col2:
    st.image(image)
 
