@@ -20,7 +20,7 @@ openai_key = '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'
 
 import os
 
-SERPAPI_API_KEY = '7778082c548d3cea65fe82dfdcb87e7ddb8ad8d7da3ae08056b49a0ce29bf83c'
+SERPAPI_API_KEY = 'f4028f207d27e8125715e806749c114ba8d5c4efa5fea7cb19f64efb36bb518f'
 os.environ['SERPAPI_API_KEY'] = SERPAPI_API_KEY
 
 search = SerpAPIWrapper()
