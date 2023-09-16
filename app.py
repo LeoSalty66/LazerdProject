@@ -5,14 +5,27 @@ from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.vectorstores import FAISS
 from langchain.chains.question_answering import load_qa_chain
 from langchain.llms import OpenAI # Brings in the OpenAI API
+
+from PIL import Image
 from langchain.agents import initialize_agent, AgentType, Tool # allows for agents to be created
 from langchain.utilities import SerpAPIWrapper # Search tool dependency
 from pydantic import BaseModel, Field
 from langchain.chains import LLMMathChain
 
 
+
+
+image = Image.open("StudyAngelLogo2.png")
 llm = OpenAI(openai_api_key='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')# initializes the llm(the ai), so it's ready for use
 openai_key = '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'
+
+
+col1, col2 = st.columns(2)
+with col1:
+   st.title("\nStudyAngel Learning Assistant")
+with col2:
+   st.image(image)
+
 st.title("StudyAngel PDF Search")
 import os
 
@@ -70,13 +83,45 @@ with tab2:
       embeddings = OpenAIEmbeddings(openai_api_key = openai_key)
       knowledge_base = FAISS.from_texts(chunks, embeddings)
 
-  # PDF questions
-    pdf_question = st.text_input("Ask any question about this PDF: ")
-    if pdf_question:
-        important_chunks = knowledge_base.similarity_search(pdf_question)
-        chain = load_qa_chain(llm, chain_type = "stuff")
-        pdfResponse = chain.run(input_documents = important_chunks, question = pdf_question)
-        st.write(pdfResponse)
+  # options: generate, smartreader, info finder
+  option = st.selectbox("What would you like to do?", ("Generate question(s)", "SmartReader", "InfoFinder"))
+  gen = False
+
+  if option == "Generate question(s)":
+    with st.form("genQues"):
+      col1, col2 = st.columns([0.4, 1])
+      with col1:
+        number = st.number_input("Number of questions", min_value=1, max_value=5, value=1, step=1)
+      with col2:
+        topic = st.text_input("Topic: ")
+      submitted = st.form_submit_button("Generate")
+      if submitted:
+        gen = True
+        pdf_question = "Generate " + str(number) + " questions about " + topic + "."
+
+  elif option == "SmartReader":
+    with st.form("smartReader"):
+      topic = st.text_input("Topic: ")
+      submitted = st.form_submit_button("Generate")
+      if submitted:
+        gen = True
+        pdf_question = "Condense the information about " + topic + " in a way that's easy to understand."
+  
+  else:
+    with st.form("infoFinder"):
+      pdf_question = st.text_input("Enter any question: ")
+      submitted = st.form_submit_button("Generate")
+      if submitted:
+        gen = True
+
+  # Generate the text based on whatever input the user gives
+  if gen == True:
+      important_chunks = knowledge_base.similarity_search(pdf_question)
+      chain = load_qa_chain(llm, chain_type = "stuff")
+      pdfResponse = chain.run(input_documents = important_chunks, question = pdf_question)
+      st.write(pdfResponse)
+
+    
 
 
 
@@ -86,15 +131,15 @@ with tab1:
   gen = False
 
   if option == "Generate by class":
-    col1, col2, col3 = st.columns([0.5, 1, 1])
     with st.form("byClass"):
+      col1, col2, col3 = st.columns([0.5, 1, 1])
       with col1:
-        number = st.number_input("", min_value=1, max_value=5, value=1, step=1)
+        number = st.number_input("Number of questions", min_value=1, max_value=5, value=1, step=1)
       with col2:
-        topic = st.text_input("", placeholder="Topic")
+        topic = st.text_input("Topic")
 
       with col3:
-        curriculum = st.text_input("", placeholder="Class")
+        curriculum = st.text_input("Class")
 
       # difficulty slider
 
