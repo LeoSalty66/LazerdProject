@@ -26,7 +26,6 @@ with col1:
 with col2:
    st.image(image)
 
-st.title("StudyAngel PDF Search")
 import os
 
 SERPAPI_API_KEY = '7778082c548d3cea65fe82dfdcb87e7ddb8ad8d7da3ae08056b49a0ce29bf83c'
