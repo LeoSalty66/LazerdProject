@@ -101,8 +101,7 @@ with tab2:
       if submitted:
         gen = True
 
-  # PDF questions
-  
+  # Generate the text based on whatever input the user gives
   if gen == True:
       important_chunks = knowledge_base.similarity_search(pdf_question)
       chain = load_qa_chain(llm, chain_type = "stuff")
