@@ -5,12 +5,9 @@ from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.vectorstores import FAISS
 from langchain.chains.question_answering import load_qa_chain
 from langchain.llms import OpenAI # Brings in the OpenAI API
-
 from PIL import Image
 from langchain.agents import initialize_agent, AgentType, Tool # allows for agents to be created
-from langchain.utilities import SerpAPIWrapper # Search tool dependency
-from pydantic import BaseModel, Field
-from langchain.chains import LLMMathChain
+from langchain.utilities import SerpAPIWrapper, PythonREPL # Search tool dependency
 
 
 
@@ -20,11 +17,6 @@ llm = OpenAI(openai_api_key='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
 openai_key = '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'
 
 
-col1, col2 = st.columns(2)
-with col1:
-   st.title("\nStudyAngel Learning Assistant")
-with col2:
-   st.image(image)
 
 import os
 
@@ -39,25 +31,25 @@ Search = Tool( #generates a tool for the agent to use
 )
 tools = [Search] # adds the search tool to the agent's toolbox
 
-
-
-llm_math_chain = LLMMathChain(llm=llm, verbose=True) # initializes the math chain AI
-class CalculatorInput(BaseModel):
-    question: str = Field()
-Calculator = Tool( # Implements the calculator as a tool available to the Agent
-    func=llm_math_chain.run,
-    name="Calculator",
-    description="useful for when you need to answer questions about math",
+python_REPL = PythonREPL()
+python_repl = Tool(# allows the AI to code
+  name="python_repl",
+  func=python_REPL.run,
+  description="useful for when you need to use python to answer a question. You should input python code"
 )
-tools.append(Calculator) # adds the calculator tool to the agent's toolbox
-
-
-
-
+tools.append(python_repl)
 
 agent = initialize_agent( # creates an agent with the tools
     tools, llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION, verbose=True, 
 )
+
+
+
+col1, col2 = st.columns(2)
+with col1:
+   st.title("\nStudyAngel Learning Assistant")
+with col2:
+   st.image(image)
 
 
 tab1, tab2 = st.tabs(["Practice Assistant", "PDF Reader"])
