@@ -16,8 +16,8 @@ from langchain.chains import LLMMathChain
 
 
 image = Image.open("StudyAngelLogo2.png")
-llm = OpenAI(openai_api_key='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')# initializes the llm(the ai), so it's ready for use
-openai_key = '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'
+llm = OpenAI(openai_api_key='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')# initializes the llm(the ai), so it's ready for use
+openai_key = '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'
 
 
 col1, col2 = st.columns(2)
