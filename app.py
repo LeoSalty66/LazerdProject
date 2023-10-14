@@ -13,14 +13,14 @@ from langchain.utilities import SerpAPIWrapper, PythonREPL # Search tool depende
 
 
 image = Image.open("StudyAngelLogo2.png")
-llm = OpenAI(openai_api_key='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')# initializes the llm(the ai), so it's ready for use
-openai_key = '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'
+llm = OpenAI(openai_api_key='')# initializes the llm(the ai), so it's ready for use
+openai_key = ''
 
 
 
 import os
 
-SERPAPI_API_KEY = 'f4028f207d27e8125715e806749c114ba8d5c4efa5fea7cb19f64efb36bb518f'
+SERPAPI_API_KEY = ''
 os.environ['SERPAPI_API_KEY'] = SERPAPI_API_KEY
 
 search = SerpAPIWrapper()
