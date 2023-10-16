@@ -1,13 +1,12 @@
-# Study Angel
-# The AI Learning Assistant
-PIP(And other dependencies) Library:
-Download Python for your Device 
-py -m pip install langchain
-py -m pip install openai
-py -m pip install google-search-results
-py -m pip install pydantic
-py -m pip install streamlit
-py -m pip install dotenv
-py -m pip install tiktoken
-py -m pip install faiss-cpu
-py -m pip install sympy
+# Study Angel: The AI Learning Assistant
+PIP(And other dependencies) Library:<br>
+Download Python for your Device <br>
+py -m pip install langchain<br>
+py -m pip install openai<br>
+py -m pip install google-search-results<br>
+py -m pip install pydantic<br>
+py -m pip install streamlit<br>
+py -m pip install dotenv<br>
+py -m pip install tiktoken<br>
+py -m pip install faiss-cpu<br>
+py -m pip install sympy<br>
