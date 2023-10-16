@@ -1,4 +1,5 @@
-# LazerdProject
+# Study Angel
+# The AI Learning Assistant
 PIP(And other dependencies) Library:
 Download Python for your Device 
 py -m pip install langchain
