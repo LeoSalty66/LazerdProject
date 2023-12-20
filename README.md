@@ -1,4 +1,10 @@
 # Study Angel: The AI Learning Assistant
+
+Video Demo: [![Watch the video]()](https://www.youtube.com/watch?v=jaoAXHdSHvs)
+
+
+
+
 PIP(And other dependencies) Library:<br>
 Download Python for your Device <br>
 py -m pip install langchain<br>
